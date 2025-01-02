@@ -1,0 +1,27 @@
+{
+  "name": "electron-demo",
+  "version": "1.0.0",
+  "description": "An Electron project demo",
+  "private": true,
+  "author": {
+    "name": "AndyBeat",
+    "email": "137811032@qq.com"
+  },
+  "shortcutFolderName": "ElectronDemo",
+  "scripts": {
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AndyBeat/electron-demo.git"
+  },
+  "engines": {
+    "node": ">=20.15.0",
+    "npm": ">=10.2.4"
+  },
+  "workspaces": [
+    "packages/*",
+    "configs/*",
+    "scripts"
+  ]
+}
