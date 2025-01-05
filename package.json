@@ -16,12 +16,7 @@
     "url": "https://github.com/AndyBeat/electron-demo.git"
   },
   "engines": {
-    "node": ">=20.15.0",
-    "npm": ">=10.2.4"
-  },
-  "workspaces": [
-    "packages/*",
-    "configs/*",
-    "scripts"
-  ]
+    "node": ">=22.8.0",
+    "npm": ">=10.8.2"
+  }
 }
