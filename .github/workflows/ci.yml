@@ -1,19 +1,21 @@
 name: CI
 
+# 定义触发工作流的事件
 on:
   push:
     branches:
-      - main
+      - master # 当master分支有推送时触发
 
   pull_request:
     branches:
-      - main
+      - master # 当向master分支发起拉取请求时触发
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # 指定运行任务的环境，这里是最新的Ubuntu
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - name: Checkout code # 检出代码步骤
+        uses: actions/checkout@v4 # v4
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4.0.0
@@ -21,7 +23,7 @@ jobs:
       - name: Set node
         uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 22.x
           cache: pnpm
 
       - name: Install
@@ -37,12 +39,12 @@ jobs:
 
     strategy:
       matrix:
-        node_version: [18.x, 20.x]
+        node_version: [22.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
       fail-fast: false
 
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/checkout@v4 # v4
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4.0.0
