@@ -8,7 +8,14 @@ const props = defineProps({
   },
 })
 
-const { sendMsg: sendMsgToMainProcess, onReplyMsg } = window.electron
+const { sendMsg: sendMsgToMainProcess, onReplyMsg } = {
+  sendMsg: () => {
+    return Promise.resolve()
+  },
+  onReplyMsg: () => {
+
+  },
+}
 
 const log = ref('')
 const msg = ref('')
