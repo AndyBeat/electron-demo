@@ -12,42 +12,35 @@
     "type": "git",
     "url": "https://github.com/AndyBeat/electron-demo.git"
   },
-  "main": "dist/main/index.js",
+  "main": "dist-electron/main/index.js",
   "engines": {
     "node": ">=22.8.0",
     "npm": ">=10.8.2"
   },
   "shortcutFolderName": "ElectronDemo",
   "scripts": {
-    "dev": "rimraf dist && vite",
-    "debug": "rimraf dist && vite -- --dsb-debug",
-    "build": "rimraf dist && vite build",
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build && electron-builder",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "postinstall": "electron-builder install-app-deps"
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@doubleshot/nest-electron": "^0.2.5",
-    "@nestjs/common": "^10.4.13",
-    "@nestjs/core": "^10.4.13",
-    "@nestjs/microservices": "^10.4.13",
-    "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1",
+    "corepack": "^0.30.0",
     "vue": "^3.5.13"
   },
   "devDependencies": {
     "@lightwing/eslint-config": "^1.0.93",
     "@vitejs/plugin-vue": "5.2.1",
-    "@vue/compiler-sfc": "3.5.13",
-    "electron": "33.2.1",
-    "electron-builder": "25.1.8",
+    "electron": "^33.3.1",
+    "electron-builder": "^25.1.8",
     "eslint": "9.17.0",
     "lint-staged": "15.3.0",
     "rimraf": "6.0.1",
     "simple-git-hooks": "2.11.1",
     "typescript": "5.7.2",
     "vite": "6.0.7",
-    "vite-plugin-doubleshot": "0.0.17",
+    "vite-plugin-electron": "^0.29.0",
+    "vite-plugin-electron-renderer": "^0.14.5",
     "vue-tsc": "2.2.0"
   },
   "simple-git-hooks": {
