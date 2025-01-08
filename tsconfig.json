@@ -1,40 +1,20 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "jsx": "preserve",
-    "lib": [
-      "esnext",
-      "dom"
-    ],
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "baseUrl": ".",
+    "useDefineForClassFields": true,
     "module": "ESNext",
-    "moduleResolution": "node",
-    "paths": {
-      "@render/*": [
-        "src/render/*"
-      ],
-      "@main/*": [
-        "src/main/*"
-      ]
-    },
+    "moduleResolution": "Node",
+    "strict": true,
+    "jsx": "preserve",
     "resolveJsonModule": true,
-    "types": [
-      "vite/client",
-      "./src/preload"
-    ],
-    "strict": false,
-    "noImplicitAny": false,
-    "noEmit": true,
-    "sourceMap": true,
+    "isolatedModules": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "lib": ["ESNext", "DOM"],
+    "skipLibCheck": true,
+    "noEmit": true
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue"
+  "include": ["src"],
+  "references": [
+    { "path": "./tsconfig.node.json" }
   ]
 }
