@@ -1,4 +1,4 @@
-import { ipcRenderer, contextBridge } from 'electron'
+import { contextBridge, ipcRenderer } from 'electron'
 
 // --------- Expose some API to the Renderer process ---------
 contextBridge.exposeInMainWorld('ipcRenderer', {
@@ -28,7 +28,8 @@ function domReady(condition: DocumentReadyState[] = ['complete', 'interactive'])
   return new Promise((resolve) => {
     if (condition.includes(document.readyState)) {
       resolve(true)
-    } else {
+    }
+    else {
       document.addEventListener('readystatechange', () => {
         if (condition.includes(document.readyState)) {
           resolve(true)
