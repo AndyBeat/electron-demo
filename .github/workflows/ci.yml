@@ -6,10 +6,6 @@ on:
     branches:
       - master # 当master分支有推送时触发
 
-  pull_request:
-    branches:
-      - master # 当向master分支发起拉取请求时触发
-
 jobs:
   lint:
     runs-on: ubuntu-latest # 指定运行任务的环境，这里是最新的Ubuntu
