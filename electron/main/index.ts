@@ -60,12 +60,12 @@ async function createWindow() {
   })
 
   if (VITE_DEV_SERVER_URL) { // #298
-    win.loadURL(VITE_DEV_SERVER_URL)
+    await win.loadURL(VITE_DEV_SERVER_URL)
     // Open devTool if the app is not packaged
     win.webContents.openDevTools()
   }
   else {
-    win.loadFile(indexHtml)
+    await win.loadFile(indexHtml)
   }
 
   // Test actively push message to the Electron-Renderer
@@ -84,7 +84,7 @@ async function createWindow() {
 
 app.whenReady().then(createWindow)
 
-app.on('window-all-closed', () => {
+app.on('window-all-closed', async () => {
   win = null
   if (process.platform !== 'darwin')
     app.quit()
@@ -99,18 +99,18 @@ app.on('second-instance', () => {
   }
 })
 
-app.on('activate', () => {
+app.on('activate', async () => {
   const allWindows = BrowserWindow.getAllWindows()
   if (allWindows.length) {
     allWindows[0].focus()
   }
   else {
-    createWindow()
+    await createWindow()
   }
 })
 
 // New window example arg: new windows url
-ipcMain.handle('open-win', (_, arg) => {
+ipcMain.handle('open-win', async (_, arg) => {
   const childWindow = new BrowserWindow({
     webPreferences: {
       preload,
@@ -120,9 +120,9 @@ ipcMain.handle('open-win', (_, arg) => {
   })
 
   if (VITE_DEV_SERVER_URL) {
-    childWindow.loadURL(`${VITE_DEV_SERVER_URL}#${arg}`)
+    await childWindow.loadURL(`${VITE_DEV_SERVER_URL}#${arg}`)
   }
   else {
-    childWindow.loadFile(indexHtml, { hash: arg })
+    await childWindow.loadFile(indexHtml, { hash: arg })
   }
 })
