@@ -1,0 +1,56 @@
+{
+  // 使用 IntelliSense 了解相关属性。
+  // 悬停以查看现有属性的描述。
+  // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "1.0.0",
+  "configurations": [
+    {
+      "name": "Run with dev",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceRoot}",
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
+      "runtimeExecutable": "pnpm",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Run with build",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceRoot}",
+      "runtimeArgs": [
+        "run",
+        "build"
+      ],
+      "runtimeExecutable": "pnpm",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Run with lint",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceRoot}",
+      "runtimeArgs": [
+        "run",
+        "lint"
+      ],
+      "runtimeExecutable": "pnpm",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Run with lint fix",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceRoot}",
+      "runtimeArgs": [
+        "run",
+        "lint:fix"
+      ],
+      "runtimeExecutable": "pnpm",
+      "console": "integratedTerminal"
+    }
+  ]
+}
