@@ -2,6 +2,7 @@ import fs from 'node:fs'
 import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
 import electron from 'vite-plugin-electron/simple'
+import viteVueDevTools from 'vite-plugin-vue-devtools'
 import pkg from './package.json'
 
 // https://vitejs.dev/config/
@@ -24,7 +25,7 @@ export default defineConfig(({ command }) => {
               console.log(/* For `.vscode/.debug.script.mjs` */'[startup] Electron App')
             }
             else {
-              startup()
+              startup().then()
             }
           },
           vite: {
@@ -62,6 +63,7 @@ export default defineConfig(({ command }) => {
         // See 👉 https://github.com/electron-vite/vite-plugin-electron-renderer
         renderer: {},
       }),
+      !isBuild ? viteVueDevTools() : null
     ],
     server: process.env.VSCODE_DEBUG && (() => {
       const url = new URL(pkg.debug.env.VITE_DEV_SERVER_URL)
