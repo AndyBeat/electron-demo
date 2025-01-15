@@ -13,12 +13,9 @@ function bootstrap() {
     .$nextTick(() => {
       postMessage({ payload: 'removeLoading' }, '*')
     })
-    .then()
+    .then(() => {
+      unmountGlobalLoading()
+    })
 }
 
-async function initApplication() {
-  await bootstrap()
-  unmountGlobalLoading()
-}
-
-initApplication().then()
+bootstrap()
