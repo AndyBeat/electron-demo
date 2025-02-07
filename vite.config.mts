@@ -1,12 +1,17 @@
 import fs from 'node:fs'
 import vue from '@vitejs/plugin-vue'
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import electron from 'vite-plugin-electron/simple'
+import { createHtmlPlugin as viteHtmlPlugin } from 'vite-plugin-html'
+import viteVueDevTools from 'vite-plugin-vue-devtools'
 import pkg from './package.json'
+import { viteInjectAppLoadingPlugin } from './plugins'
 
 // https://vitejs.dev/config/
-export default defineConfig(({ command }) => {
+export default defineConfig(({ command, mode }) => {
   fs.rmSync('dist-electron', { recursive: true, force: true })
+  const viteEnv = loadEnv(mode, process.cwd(), '')
+  Object.assign(process.env, viteEnv)
 
   const isServe = command === 'serve'
   const isBuild = command === 'build'
@@ -24,7 +29,7 @@ export default defineConfig(({ command }) => {
               console.log(/* For `.vscode/.debug.script.mjs` */'[startup] Electron App')
             }
             else {
-              startup()
+              startup().then()
             }
           },
           vite: {
@@ -62,6 +67,9 @@ export default defineConfig(({ command }) => {
         // See 👉 https://github.com/electron-vite/vite-plugin-electron-renderer
         renderer: {},
       }),
+      !isBuild ? viteVueDevTools() : null,
+      viteInjectAppLoadingPlugin(!!isBuild, viteEnv),
+      viteHtmlPlugin({ minify: true }),
     ],
     server: process.env.VSCODE_DEBUG && (() => {
       const url = new URL(pkg.debug.env.VITE_DEV_SERVER_URL)
